@@ -1,4 +1,4 @@
-## ログの収集
+## 収集
 ### AWS CloudTrail
 
 ![CloudTrail to S3](images/cloudtrail-to-s3.jpg)
@@ -41,13 +41,8 @@
 * スロークエリログ (Slow query log)
 
 
-## 準備
-以下のコマンドを実行してS3バケットを作成しておく。
+## 検索
 
-```
-account_id=$(aws sts get-caller-identity --query Account --output text)
-aws s3api create-bucket \
-    --bucket "terraform-state-${account_id}" \
-    --region ap-northeast-1 \
-    --create-bucket-configuration LocationConstraint=ap-northeast-1
-```
+## 検知
+
+## 集計可視化

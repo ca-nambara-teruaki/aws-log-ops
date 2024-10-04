@@ -5,7 +5,7 @@ resource "aws_cloudwatch_log_group" "trail_log_group" {
 resource "aws_cloudtrail" "trail" {
   name                          = "${var.sys_name}-${var.env_name}-trail"
   s3_bucket_name                = var.system_logs_bucket
-  s3_key_prefix                 = "trail"
+  s3_key_prefix                 = "Trail"
   include_global_service_events = true
   is_multi_region_trail         = true
   enable_log_file_validation    = true

@@ -40,3 +40,13 @@ module "trail" {
   system_logs_bucket  = module.s3.system_logs_bucket.bucket
   depends_on          = [module.iam, module.s3]
 }
+
+module "logs_table" {
+  source         = "../../modules/logs-table"
+  env_name       = var.env_name
+  sys_name       = var.sys_name
+  aws_account_id = data.aws_caller_identity.current.account_id
+
+  system_logs_bucket = module.s3.system_logs_bucket.bucket
+  vpc_id             = module.vpc.vpc.id
+}
