@@ -8,7 +8,6 @@ resource "aws_glue_catalog_table" "vpc_flow_logs" {
     "projection.dt.interval.unit" = "DAYS"
     "EXTERNAL"                    = "TRUE"
     "projection.dt.type"          = "date"
-    "transient_lastDdlTime"       = "1728028223"
     "projection.enabled"          = "true"
     "projection.dt.interval"      = "1"
     "projection.dt.format"        = "yyyy/MM/dd"

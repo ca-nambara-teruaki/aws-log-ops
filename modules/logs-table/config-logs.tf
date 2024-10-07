@@ -9,7 +9,6 @@ resource "aws_glue_catalog_table" "config_logs" {
     "projection.dt.interval.unit" = "DAYS"
     "EXTERNAL"                    = "TRUE"
     "projection.dt.type"          = "date"
-    "transient_lastDdlTime"       = "1728030674"
     "projection.enabled"          = "true"
     "projection.dt.interval"      = "1"
     "projection.dt.format"        = "yyyy/M/d"
