@@ -65,13 +65,14 @@ ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
 STORED AS INPUTFORMAT 'com.amazon.emr.cloudtrail.CloudTrailInputFormat'
 OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
 LOCATION
-  's3://${bucket_name}/Trail/AWSLogs/${aws_account_id}/CloudTrail/ap-northeast-1'
+  's3://${bucket_name}/trail/AWSLogs/${aws_account_id}/CloudTrail/'
 TBLPROPERTIES (
   'projection.enabled'='true', 
   'projection.dt.format'='yyyy/MM/dd', 
   'projection.dt.interval'='1', 
   'projection.dt.interval.unit'='DAYS', 
   'projection.dt.range'='2020/01/01,NOW', 
-  'projection.dt.type'='date', 
-  'storage.location.template'='s3://${bucket_name}/Trail/AWSLogs/${aws_account_id}/CloudTrail/ap-northeast-1/${dt}'
+  'projection.dt.type'='date',
+  'projection.region.type'='injected',
+  'storage.location.template'='s3://${bucket_name}/trail/AWSLogs/${aws_account_id}/CloudTrail/${region}/${dt}'
 );

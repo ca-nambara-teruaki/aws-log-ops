@@ -4,18 +4,19 @@ resource "aws_glue_catalog_table" "trail_logs" {
   table_type    = "EXTERNAL_TABLE"
 
   parameters = {
+    "EXTERNAL"                    = "TRUE"
+    "projection.enabled"          = "true"
     "projection.dt.range"         = "2020/01/01,NOW"
     "projection.dt.interval.unit" = "DAYS"
-    "EXTERNAL"                    = "TRUE"
     "projection.dt.type"          = "date"
-    "projection.enabled"          = "true"
     "projection.dt.interval"      = "1"
     "projection.dt.format"        = "yyyy/MM/dd"
-    "storage.location.template"   = "s3://${var.system_logs_bucket}/Trail/AWSLogs/${var.aws_account_id}/CloudTrail/ap-northeast-1/$${dt}"
+    "projection.region.type"      = "injected"
+    "storage.location.template"   = "s3://${var.system_logs_bucket}/trail/AWSLogs/${var.aws_account_id}/CloudTrail/$${region}/$${dt}"
   }
 
   storage_descriptor {
-    location      = "s3://${var.system_logs_bucket}/Trail/AWSLogs/${var.aws_account_id}/CloudTrail/ap-northeast-1"
+    location      = "s3://${var.system_logs_bucket}/trail/AWSLogs/${var.aws_account_id}/CloudTrail/"
     input_format  = "com.amazon.emr.cloudtrail.CloudTrailInputFormat"
     output_format = "org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat"
 
@@ -150,6 +151,11 @@ resource "aws_glue_catalog_table" "trail_logs" {
         "serialization.format" = "1"
       }
     }
+  }
+
+  partition_keys {
+    name = "region"
+    type = "string"
   }
 
   partition_keys {

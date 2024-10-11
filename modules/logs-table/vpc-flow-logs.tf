@@ -11,7 +11,7 @@ resource "aws_glue_catalog_table" "vpc_flow_logs" {
     "projection.enabled"          = "true"
     "projection.dt.interval"      = "1"
     "projection.dt.format"        = "yyyy/MM/dd"
-    "storage.location.template"   = "s3://${var.system_logs_bucket}/VpcFlowLogs/${var.vpc_id}/AWSLogs/${var.aws_account_id}/vpcflowlogs/ap-northeast-1/$${dt}"
+    "storage.location.template"   = "s3://${var.system_logs_bucket}/${var.env_name}/vpc-flow-logs/${var.vpc_id}/AWSLogs/${var.aws_account_id}/vpcflowlogs/ap-northeast-1/$${dt}"
   }
 
   storage_descriptor {
@@ -50,7 +50,7 @@ resource "aws_glue_catalog_table" "vpc_flow_logs" {
     }
 
     columns {
-      name = "endtime"
+      name = "end"
       type = "bigint"
     }
 
@@ -120,7 +120,7 @@ resource "aws_glue_catalog_table" "vpc_flow_logs" {
     }
 
     columns {
-      name = "starttime"
+      name = "start"
       type = "bigint"
     }
 
@@ -150,17 +150,17 @@ resource "aws_glue_catalog_table" "vpc_flow_logs" {
     }
 
     columns {
-      name = "ip_type"
-      type = "string"
-    }
-
-    columns {
       name = "version"
       type = "int"
     }
 
     columns {
       name = "vpc_id"
+      type = "string"
+    }
+
+    columns {
+      name = "type"
       type = "string"
     }
 
