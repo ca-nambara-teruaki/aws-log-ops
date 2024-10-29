@@ -34,15 +34,17 @@ resource "aws_config_configuration_recorder" "config" {
   }
 }
 
-resource "aws_config_configuration_recorder_status" "config" {
-  name       = aws_config_configuration_recorder.config.name
-  is_enabled = true
-  depends_on = [aws_config_configuration_recorder.config]
-}
-
 resource "aws_config_delivery_channel" "config" {
   name           = "default"
   s3_bucket_name = var.system_logs_bucket
   s3_key_prefix  = "Config"
   depends_on     = [aws_config_configuration_recorder.config]
 }
+
+resource "aws_config_configuration_recorder_status" "config" {
+  name       = aws_config_configuration_recorder.config.name
+  is_enabled = true
+  depends_on = [aws_config_configuration_recorder.config, aws_config_delivery_channel.config]
+}
+
+

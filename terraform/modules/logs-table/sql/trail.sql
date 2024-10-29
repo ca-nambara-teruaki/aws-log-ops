@@ -73,6 +73,7 @@ TBLPROPERTIES (
   'projection.dt.interval.unit'='DAYS', 
   'projection.dt.range'='2020/01/01,NOW', 
   'projection.dt.type'='date',
-  'projection.region.type'='injected',
+  'projection.region.type'='enum',
+  'projection.region.values'='ap-south-2,ap-south-1,eu-south-1,eu-south-2,me-central-1,il-central-1,ca-central-1,eu-central-1,eu-central-2,us-west-1,us-west-2,af-south-1,eu-north-1,eu-west-3,eu-west-2,eu-west-1,ap-northeast-3,ap-northeast-2,me-south-1,ap-northeast-1,sa-east-1,ap-east-1,ca-west-1,ap-southeast-1,ap-southeast-2,ap-southeast-3,ap-southeast-4,us-east-1,ap-southeast-5,us-east-2',
   'storage.location.template'='s3://${bucket_name}/trail/AWSLogs/${aws_account_id}/CloudTrail/${region}/${dt}'
 );

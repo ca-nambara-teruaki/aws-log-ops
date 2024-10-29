@@ -45,8 +45,25 @@
 * スロークエリログ (Slow query log)
 
 
-## 検索
+## 利用方法
 
-## 検知
+1. AWSの環境変数を設定する
+```
+export AWS_ACCESS_KEY_ID=<your_access_key_id> && \
+export AWS_SECRET_ACCESS_KEY=<your_secret_key> && \
+export AWS_SESSION_TOKEN=<your_session_token> && \
+export AWS_DEFAULT_REGION=ap-northeast-1
+```
 
-## 集計可視化
+2. Terraform適用
+```
+docker compose run --rm terraform init
+docker compose run --rm terraform plan
+docker compose run --rm terraform apply
+docker compose run --rm terraform destroy
+```
+
+* Note: docker compose runのオプション
+  * docker-compose run [オプション] [-v ボリューム...] [-p ポート...] [-e KEY=VAL...] [-l KEY=VALUE...]
+      サービス [コマンド] [引数...]
+  * --rm                  コンテナ実行後に削除。デタッチド・モードの場合は無視
